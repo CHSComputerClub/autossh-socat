@@ -9,7 +9,7 @@ ARG VERSION="dirty"
 
 LABEL org.opencontainers.image.ref.name="${PACKAGE}" \
   org.opencontainers.image.created=$BUILD_RFC3339 \
-  org.opencontainers.image.authors="Justin J. Novack <jnovack@gmail.com>" \
+  org.opencontainers.image.authors="Ian Steiger <iksteiger@gmail.com>" \
   org.opencontainers.image.documentation="https://github.com/${PACKAGE}/README.md" \
   org.opencontainers.image.description="${DESCRIPTION}" \
   org.opencontainers.image.licenses="MIT" \

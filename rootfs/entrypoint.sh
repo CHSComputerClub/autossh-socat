@@ -39,6 +39,17 @@ fi
 DEFAULT_PORT=$RANDOM
 let "DEFAULT_PORT += 32768"
 
+UDP_FORWARD_PORT=$RANDOM
+let "UDP_FORWARD_PORT += 32768"
+
+# if port type is udp
+if [ "${SSH_TUNNEL_TYPE}" = "udp" ]; then
+    echo "[INFO ] UDP specified, ensure that your endpoint knows what to do with the TCP stream: https://github.com/mullvad/udp-over-tcp"
+    exec "./udp2tcp --udp-listen ${SSH_TARGET_HOST}:${SSH_TARGET_PORT} --tcp-forward 127.0.0.1:${UDP_FORWARD_PORT}"
+    SSH_TUNNEL_PORT=${UDP_FORWARD_PORT}
+    SSH_TARGET_PORT=${UDP_FORWARD_PORT}
+fi
+
 # Determine command line flags
 
 # Log to stdout
